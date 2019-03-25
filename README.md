@@ -61,7 +61,17 @@ Using a router, add these routes to the server:
   ]
 }
 ```
-- `GET` `/game/:id/choice/:choiceIndex` which allows one to choose one of the possible answer to a question and returns the following one. (ie: `initial` -> select `choice @index 1`  ->`node#1` and so on..)
+- `POST` `/game/:id` which allows one to choose one of the possible answer to a question and returns the following one, given the index of the selected answer. (ie: `initial` -> select `choice @index 1`  ->`node#1` and so on..)
+
+
+*Payload*
+``` 
+{
+    "choiceIndex": 0
+}
+```
+
+*Response*
 ```
 {
   "id": "derp",
@@ -97,6 +107,7 @@ Those are for more experienced software engineers. It really is OK to not do the
 
 #### Medium:
 
+- Create a basic UI for the game. No React/no Vue. Vanilla like a boss.
 - Plug-in a database such as `Mongo` or `Postgre` instead of putting everything in memory.
 
 #### Hard:
