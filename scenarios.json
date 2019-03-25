@@ -1,0 +1,67 @@
+{
+  "BandersGuru": {
+    "summary": "Try to get recruited as a Software Engineer at Carts-Guru!",
+    "nodes": {
+      "initial": {
+        "line": "You are in front of the Carts-Guru office at 880 Harrison in San Francisco",
+        "choices": [
+          {
+            "line": "Enter the office",
+            "goto": "1",
+            "reason": "You knock and then open the door."
+          },
+          {
+            "line": "Run away in the opposite direction",
+            "goto": "failure",
+            "reason": "You ran away and improved your cardio but you're still out of a job."
+          }
+        ]
+      },
+      "1": {
+        "story": "You meet a group of Carts-Guru's finest: the Software Engineers!",
+        "choices": [
+          {
+            "line": "Start doing the backpack-kid dance to impress them.",
+            "goto": "failure",
+            "reason": "You start dancing. Suddenly, everybody dances too! But you can't stop, and everybody else either. You die of exhaustion."
+          },
+          {
+            "line": "Tell them that Android is clearly better than Apple and that whoever would argue the contrary is completely insane.",
+            "goto": "failure",
+            "reason": "You mumble something about Android being a superior mobile OS. After a 5 minutes long heated discussion, Engineers try to kill each other with their laptops. You get iKilled by a Macbook."
+          },
+          {
+            "line": "Say \" Hi! I'm #name#.",
+            "goto": "2",
+            "reason": "They all warmly welcome you and after a bit of chit-chat and a coffee, they invite you to follow them to a conference room for your inteview."
+          }
+        ]
+      },
+      "2": {
+        "story": "You follow them to a conference room. People sit around the table.",
+        "choices": [
+          {
+            "line": "Go on the table and do yoga",
+            "goto": "failure",
+            "reason": "You assume a yogi position on the table and start humming and meditating. After 4 hours of this, you reach Nirvana, but everybody's gone."
+          },
+          {
+            "line": "Sit below the table.",
+            "goto": "failure",
+            "reason": "You get attacked by some spiders that live under the table and die."
+          },
+          {
+            "line": "Sit on somebody's lap",
+            "goto": "failure",
+            "reason": "You casually proceed to sit on the CTO's lap. He looks at you REALLY weirdly during the entire interview."
+          },
+          {
+            "line": "Sit on a chair.",
+            "goto": "success",
+            "reason": "You sit and start interviewing. It goes surprisingly good! You get recruited as a Software Engineer!"
+          }
+        ]
+      }
+    }
+  }
+}
