@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>BanderSnatch</title>
+    <link rel="stylesheet" href="master.css">
+  </head>
+  <body>
+    <h1>BanderSnatch</h1>
+    <p>Create your own storyline</p>
+    <p>Please pick of the existing scenarios below:</p>
+    <div class="scenarios">
+
+    </div>
+    <script>
+      const req = new XMLHttpRequest();
+      req.open("GET", "http://0.0.0.0:/scenarios");
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+body {
+  background: lightgray;
+}
+
+.scenarios {
+  border: 1px solid blue;
+  width: 500px;
+  height: 700px;
+}
