@@ -11,8 +11,8 @@ This project is about routing with Node.js/Express.js web framework:
 ## How does it work?
 To run the app:
 `nodemon server`
+Sent request to test the response on port 8080
 
-# Sent request to test the response on port 8080
 * GET `/scenarios` where the scenarios are the top level key in scenarios.json
 
 response:
