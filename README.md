@@ -1,34 +1,21 @@
-# bandersguru
+# 0x17. Web stack debugging #3
+---
+## Description
 
-Hi and welcome on Carts-Guru's software-engineering test.
+This project is about routing with Node.js/Express.js web framework:
 
-We ask of you to please write this test in Javascript, using `NodeJS@10.14.2`.
+* Set up a server
+* Creating routes
+* HTTP and methods
 
-## TODO
+## How does it work?
+To run the app:
+`nodemon server`
 
-If you have watched Bandersnatch on Netflix, this might be familiar. 
-The goal of this techical test is to code a *'book where you are the hero'*. Don't worry, we won't be testing your writting skills ;).
+# Sent request to test the response on port 8080
+* GET `/scenarios` where the scenarios are the top level key in scenarios.json
 
-In this repository, you are provided a `scenarios.json` file that describes the scenario of this game.
-
-Using a database is a bonus task, you can work with memory only, it's OK.
-
-## Mandatory tasks
-
-#### Step 0:
-
-Clone this project and initialize your `package.json` with npm.
-
-#### Step 1: 
-
-Bootstrap a basic NodeJS HTTP Server using *any* NodeJS web framework and listen on the `8080` port in a `server.js` file.
-
-#### Step 2: 
-
-Using a router, add these routes to the server:
-
-- `GET` `/scenarios` where the scenarios are the top level key in `scenarios.json`
-
+response:
 ```
 {
   "scenarios": [
@@ -36,8 +23,10 @@ Using a router, add these routes to the server:
   ]
 }
 ```
-- `POST`  `/game` which allows to start a game given a scenario name as JSON and returns the ID of a game.
 
+* POST `/game` which allows to start a game given a scenario name as JSON and returns the ID of a game.
+
+response:
 ```
 {
   "id": "ec6a7bd0-4f45-11e9-9f9d-2dcc58927dae",
@@ -45,7 +34,10 @@ Using a router, add these routes to the server:
   "currentStep": "initial"
 }
 ```
-- `GET` `/game/:id` which allows one to get a game by ID.
+
+* GET `/game/:id` which allows one to get a game by ID.
+
+response:
 ```
 {
   "id": "derp",
@@ -61,17 +53,18 @@ Using a router, add these routes to the server:
   ]
 }
 ```
-- `POST` `/game/:id` which allows one to choose one of the possible answer to a question and returns the following one, given the index of the selected answer. (ie: `initial` -> select `choice @index 1`  ->`node#1` and so on..)
 
+* POST `/game/:id` which allows one to choose one of the possible answer to a question and returns the following one, given the index of the selected answer. `(ie: initial -> select choice @index 1 ->node#1 and so on..)`
 
-*Payload*
-``` 
+payload:
+```
 {
     "choiceIndex": 0
 }
+
 ```
 
-*Response*
+response:
 ```
 {
   "id": "derp",
@@ -89,33 +82,22 @@ Using a router, add these routes to the server:
     }
   ]
 }
+
 ```
 
-At this point your game should be playable by *cURL*.
 
-(see `boom` on npm)
+## Files
+---
+File|Task
+---|---
+scenarios.json | json file with all Scenarios
+server.js | main file to start server and accept incoming requests
 
-## Bonus steps: 
+## Directories
+---
+Directory Name | Description
+---|---
+/bandersguru | Main folder holding all files
 
-Those are for more experienced software engineers. It really is OK to not do them if you're a junior *:)*
-
-#### Easy
-
-- Use babel to transpile to use modern features (`import/export`...)
-- Add tests with a test framework (`jasmine`, `mocha`, `jest`...)
-- Linter + prettier (`eslint` + `prettier`) using the `Standard` convention
-
-#### Medium:
-
-- Create a basic UI for the game. No React/no Vue. Vanilla like a boss.
-- Plug-in a database such as `Mongo` or `Postgre` instead of putting everything in memory.
-
-#### Hard:
-
-- Use an ORM (`sequelize`...)
-
-#### God:
-
-- Run everything on docker-compose with live-reload. Now that's a real dev workflow!
-- ES6+ is too easy. Do everything in Reason.
-- Do your own scenario *:)*
+## Author
+Heindrick Cheung
