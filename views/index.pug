@@ -5,17 +5,19 @@ html
     style
       include master.css
   body
-    h1 #{siteName}!
-
-    h3 click one scenario to start playing!:
-    if json != null
-      ol
-        for scene in json.scenarios
-          li= scene
-    h4 
-    
-    <button type="submit" class="startbtn" data-target="/game.html">Start</button>
-    
-    
+    //- h1 #{siteName}
+    //- 
+    //- h3 click one scenario to start playing!:
+    //- if json != null
+    //-   ol
+    //-     for scene in json.scenarios
+    //-       li= scene
+    //- h4 
+    //- 
+    //- h2= summary
+    //- 
+    //- <button type="submit" class="startbtn" data-target="/game.html">Start</button>
+    //- 
+    //- 
     script
       include script.js

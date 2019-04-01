@@ -2,11 +2,30 @@ html
   head
     title= BanderSnatch
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js')
+    style
+      include master.css
   body
-    h1 Time to live your life by making your own choices
+    //- h1 #{siteName}
+    //- 
+    //- h3 This is your summary:
+    //- h4= init.summary
+    //- 
+    //- h3 This is your scenario:
+    //- h4= init.line
+    //- 
+    //- if init.choices
+    //-   ol
+    //-     for choice in init.choices
+    //-       li
+    //-         p= choice.line
+    //-         p#action= choice.reason
+    //- div
+    //-   p#first
+    //-   p#firstAnswer
+    //-   p#second
+    //-   p#secondAnswer
+    //-   p#third
+    //-   p#thirdAnswer
 
-    ol
-      for scene in scenarios
-        li= scene
     script
-      include script.js
+      include game.js

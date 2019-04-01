@@ -3,6 +3,8 @@ const path = require('path');
 const uuid = require('uuid/v1');
 const bodyParser = require('body-parser');
 const scenarios = require('./Scenarios');
+const story = require('./scenarios.json');
+
 // initialize the app
 const app = express();
 
@@ -20,52 +22,121 @@ app.locals.siteName = 'BanderSnatch';
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
-app.use(logger);
-// Use routes in the App
-// app.use(express.static(path.join(__dirname, 'views/static/')));
-// Configure parser to handle post requests -- optional
+app.use(function (err, req, res, next) {
+  console.error(err.message);
+  if (!err.statusCode) err.statusCode = 500; // Sets a generic server error status code if none is part of the err
+
+  if (err.shouldRedirect) {
+    res.render('myErrorPage'); // Renders a myErrorPage.html for the user
+  } else {
+    res.status(err.statusCode).send(err.message); // If shouldRedirect is not defined in our error, sends our original err data
+  }
+});
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-// Storage engine
-let game_storage = {};
-let game_obj = {};
-
-app.get('/', (req, res) => {
+app.all('/', function (req, res, next) {
+  console.log('Accessing the / section');
+  throw new Error('BROKEN');
+  next();
 });
+
+// Storage engine
+let gameStorage = {};
+let game_obj = {};
 
 // GET all scenarios
 app.get('/scenarios', (req, res) => {
-  res.render('index', json = scenarios);
+  res.json({'scenarios': Object.keys(story)});
 });
 
 // POST scenario choice and start a game as JSON and return ID
 app.post('/game', (req, res) => {
-  let gameUID = uuid();
-  // let gameURL = `${req.protocol}://${req.get('host')}${req.originalUrl}`; +'/' + gameUID;
-
-  game_obj['id'] = 'derp';
-  game_obj['scenario'] = req.body.scenario;
-  game_obj['currentStep'] = 'initial';
-  res.json({'id': gameUID});
-  // store game to file Storage
-  game_storage[gameUID] = game_obj;
-  game_obj = {};
+  const allScenarios = Object.keys(story);
+  const thisScenario = req.body.scenario;
+  let bool = 0;
+  for (let i = 0; i < allScenarios.length; i++) {
+    if (thisScenario === allScenarios[i]) {
+      bool = 1;
+    }
+  }
+  if (bool === 1) {
+    const gameUID = uuid();
+    game_obj['id'] = gameUID;
+    game_obj['scenario'] = req.body.scenario;
+    game_obj['currentStep'] = 'initial';
+    res.json(game_obj);
+    gameStorage[gameUID] = game_obj;
+    game_obj = {};
+  } else {
+    res.json({
+      'statusCode': 400,
+      'error': 'Bad Request',
+      'message': 'invalid query'
+    });
+  }
 });
 
 // GET game with id
 app.get('/game/:id', (req, res) => {
-  gameId = req.params.id;
-  if (req.params.id) {
-    const story = require('./scenarios.json');
-    console.log(gameId);
-    console.log(story['BandersGuru']);
-    // game_storage[gameId][] = scenarios[]
-    // res.render('game', scenarios = );
+  const gameId = req.params.id;
+  const game = gameStorage[gameId];
+  const scene = gameStorage[gameId].scenario;
+  const step = gameStorage[gameId].currentStep;
+
+  try {
+    let arrChoice = [];
+    let allChoice = story[scene].nodes[step].choices;
+    for (let i = 0; i < allChoice.length; i++) {
+      arrChoice.push({'line': allChoice[i]['line']});
+    }
+    game.id = 'derp';
+    game['choices'] = arrChoice;
+    res.json(game);
+  } catch (err) {
+    res.status;
   }
+});
+
+// POST the index of each action
+app.post('/game/:id', (req, res) => {
+  const gameId = req.params.id;
+  const game = gameStorage[gameId];
+  const choiceIndex = req.body.choiceIndex;
+  const currentGame = gameStorage[req.params.id];
+
+  const scene = gameStorage[gameId].scenario;
+  const step = gameStorage[gameId].currentStep;
+
+  try {
+    let currentChoices = story[scene].nodes[step].choices[choiceIndex];
+    const newIndex = currentChoices.goto;
+    if (newIndex === 'success') {
+      res.json({'goto': 'success'});
+    } else if (newIndex !== 'failure' || newIndex != 'success') {
+      game['currentStep'] = newIndex;
+      let arrChoices = [];
+      let newChoices = story[scene].nodes[newIndex].choices;
+      for (let i = 0; i < newChoices.length; i++) {
+        arrChoices.push({'line': newChoices[i]['line']});
+        game['choices'] = arrChoices;
+      }
+      res.json(game);
+    }
+  } catch (err) {
+    res.json({'goto': 'failure'});
+  }
+});
+
+// Elsewhere route
+app.get('*', function (req, res, next) {
+  let err = new Error(`${req.ip} tried to reach ${req.originalUrl}`);
+  err.statusCode = 404;
+  err.shouldRedirect = true;
+  next(err);
 });
 
 // Setup server port to 8080
