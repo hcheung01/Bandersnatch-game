@@ -1,5 +1,41 @@
-/* * {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-} */
+  font-family: 'Roboto Mono', monospace;
+
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  height: 800px;
+  justify-content: space-around;
+}
+
+h1 {
+  font-size: 80px;
+}
+
+li {
+  font-size: 30px;
+  margin: 0px 50px 50px 50px;
+  list-style: none;
+}
+
+p {
+  font-size: 30px;
+}
+
+h4 {
+  font-size: 50px;
+  font-weight: 400;
+}
+
+button {
+  align-self: center;
+  width: 100px;
+  height: 60px;
+  border-radius: 8px;
+}

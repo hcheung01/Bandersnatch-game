@@ -68,7 +68,7 @@
     "summary": "Try to get recruited as a Software Engineer at Carts-Guru! SCENARIO #2",
     "nodes": {
       "initial": {
-        "line": "Its Sunday night, I haven't slept enough for 3 days but I did it. This is a test",
+        "line": "Its Sunday night, give up or measure yourself This is a test",
         "choices": [
           {
             "line": "Hello Andrei and Valentin",

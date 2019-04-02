@@ -4,13 +4,18 @@
 
 This project is about routing with Node.js/Express.js web framework:
 
-* Set up a server
-* Creating routes
+* Setting up a server
+* create an api that can handle routes
 * HTTP and methods
+* rendering to a template
+* responsive basic front end UI with Javascript/jQuery
 
 ## How does it work?
 To run the app:
 `nodemon server`
+Open browser and type in...
+`http://0.0.0.0/scenarios`
+
 Sent request to test the response on port 8080
 
 * GET `/scenarios` where the scenarios are the top level key in scenarios.json
@@ -92,6 +97,10 @@ File|Task
 ---|---
 scenarios.json | json file with all Scenarios
 server.js | main file to start server and accept incoming requests
+template.pug | PUG template file for rendering return list of Scenarios
+game.pug | PUG template file for rendering return list of choices
+script.js | primary Javscript and jQuery file
+style.css | css styling file
 
 ## Directories
 ---
