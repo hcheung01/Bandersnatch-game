@@ -10,7 +10,7 @@ body {
   display: flex;
   flex-direction: column;
   text-align: center;
-  height: 800px;
+  height: 900px;
   justify-content: space-around;
 }
 
@@ -26,6 +26,7 @@ li {
 
 p {
   font-size: 30px;
+  margin: 30px;
 }
 
 h4 {

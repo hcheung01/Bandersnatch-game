@@ -49,9 +49,8 @@ let game_obj = {};
 
 // GET all scenarios
 app.get('/scenarios', (req, res) => {
-  res.render('template', scene = {'scenarios': Object.keys(story)});
-
-  // res.json({'scenarios': Object.keys(story)});
+  let line = story.BandersGuru.summary;
+  res.render('template', scene = {'scenarios': Object.keys(story), 'line': line});
 });
 
 // POST scenario choice and start a game as JSON and return ID
@@ -87,7 +86,8 @@ app.get('/game/:id', (req, res) => {
   const game = gameStorage[gameId];
   const scene = gameStorage[gameId].scenario;
   const step = gameStorage[gameId].currentStep;
-  var renderChoices = [];
+  let renderChoices = [];
+  let renderReasons = [];
 
   try {
     let arrChoice = [];
@@ -95,15 +95,14 @@ app.get('/game/:id', (req, res) => {
     for (let i = 0; i < allChoice.length; i++) {
       arrChoice.push({'line': allChoice[i]['line']});
       renderChoices.push(allChoice[i]['line']);
+      renderReasons.push(allChoice[i]['reason']);
     }
     game.id = 'derp';
     game['choices'] = arrChoice;
-    // res.json(game);
   } catch (err) {
     res.status;
   }
-  console.log(renderChoices);
-  res.render('game', thechoice = renderChoices);
+  res.render('game', thechoice = {'choice': renderChoices, 'reason': renderReasons});
 });
 
 // POST the index of each action

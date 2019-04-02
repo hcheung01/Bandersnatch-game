@@ -33,6 +33,9 @@ $('.choice').click(function () {
   $(this).attr('id', 'selected');
   $('#history-container').css('display', 'block');
   $('#history-container').append('<p>' + choiceValue + '</p>');
+  const reasonValue = $('.reason').get(choiceIndex).textContent;
+  alert('Result: ' + reasonValue);
+
   $.ajax({
     type: 'POST',
     url: window.location.pathname,
@@ -49,7 +52,6 @@ $('.choice').click(function () {
       } else {
         window.location.href = window.location.pathname;
       }
-      // console.log(data.goto);
     }
   });
 });

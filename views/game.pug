@@ -12,13 +12,15 @@
   <div id="game-container">
     h2= game
       <ol>
-        each val in thechoice
+        each val in thechoice.choice
           li.choice= val
       </ol>
   </div>
-  <div id="history-container" style="display: none;">
-    h2 Choice history
-    
+  <div id="reason-container" style="display: none;">
+      <ol>
+        each val in thechoice.reason
+          li.reason= val
+      </ol>
   </div>
   script
     include script.js
