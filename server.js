@@ -40,7 +40,6 @@ app.use(bodyParser.urlencoded({
 
 app.all('/', function (req, res, next) {
   console.log('Accessing the / section');
-  throw new Error('BROKEN');
   next();
 });
 
@@ -50,7 +49,9 @@ let game_obj = {};
 
 // GET all scenarios
 app.get('/scenarios', (req, res) => {
-  res.json({'scenarios': Object.keys(story)});
+  res.render('template', scene = {'scenarios': Object.keys(story)});
+
+  // res.json({'scenarios': Object.keys(story)});
 });
 
 // POST scenario choice and start a game as JSON and return ID
@@ -86,19 +87,23 @@ app.get('/game/:id', (req, res) => {
   const game = gameStorage[gameId];
   const scene = gameStorage[gameId].scenario;
   const step = gameStorage[gameId].currentStep;
+  var renderChoices = [];
 
   try {
     let arrChoice = [];
     let allChoice = story[scene].nodes[step].choices;
     for (let i = 0; i < allChoice.length; i++) {
       arrChoice.push({'line': allChoice[i]['line']});
+      renderChoices.push(allChoice[i]['line']);
     }
     game.id = 'derp';
     game['choices'] = arrChoice;
-    res.json(game);
+    // res.json(game);
   } catch (err) {
     res.status;
   }
+  console.log(renderChoices);
+  res.render('game', thechoice = renderChoices);
 });
 
 // POST the index of each action
