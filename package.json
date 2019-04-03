@@ -1,0 +1,26 @@
+{
+  "name": "testguru2ui",
+  "version": "1.0.0",
+  "description": "--- ## Description",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hcheung01/testGuru2UI.git"
+  },
+  "author": "Heindrick Cheung",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hcheung01/testGuru2UI/issues"
+  },
+  "homepage": "https://github.com/hcheung01/testGuru2UI#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "nodemon": "^1.18.10",
+    "pug": "^2.0.3",
+    "uuid": "^3.3.2"
+  }
+}
