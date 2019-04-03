@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/hcheung01/testGuru2UI#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "nodemon": "^1.18.10",
     "pug": "^2.0.3",
