@@ -8,7 +8,7 @@ This project is about routing with Node.js/Express.js web framework:
 * create an api that can handle routes
 * HTTP and methods
 * rendering to a template
-* responsive basic front end UI with Javascript/jQuery
+* responsive basic front end UI with HTML/CSS/Pug template and Javascript/jQuery
 
 ## How does it work?
 To run the app:
